@@ -7,9 +7,9 @@ import BottomNavigation from "@/components/bottom-navigation"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Starbucks India",
+  title: "Linchans",
   description: "Your favorite coffee, now closer to you",
-    generator: 'v0.dev'
+    generator: 'Logisaar'
 }
 
 export default function RootLayout({
