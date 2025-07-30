@@ -1,10 +1,20 @@
+'use client'
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useEffect, useState } from "react";
+import Popup from "@/components/Popup";
 
 export default function Menu() {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+   const userInfo = localStorage.getItem("userInfo");
+   if (!userInfo) {
+     setShowPopup(true);
+   }
+ }, []);
   const menuCategories = {
     beverages: [
       {
@@ -99,6 +109,7 @@ export default function Menu() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       {/* Header */}
       <div className="bg-lime-700 text-white p-6">
         <h1 className="text-3xl font-bold text-center">Our Menu</h1>

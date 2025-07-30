@@ -1,9 +1,20 @@
+'use client'  
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Heart, Share2, Download, Camera } from "lucide-react"
+import { useEffect, useState } from "react";
+import Popup from "@/components/Popup";
+
 
 export default function Gallery() {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+   const userInfo = localStorage.getItem("userInfo");
+   if (!userInfo) {
+     setShowPopup(true);
+   }
+ }, []);
   const realImages = [
     "/images/outdoor/photo1.jpg",
     "/images/outdoor/photo2.jpg",
@@ -64,6 +75,7 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       {/* Enhanced Header with Real Background */}
       <div className="relative bg-gradient-to-br from-lime-300 via-slate-300 to-lime- text-white overflow-hidden">
         <div className="absolute inset-0">

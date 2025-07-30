@@ -1,10 +1,20 @@
+"use client"
 import Image from "next/image"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Clock, Gift, Star, Zap, Coffee, Heart } from "lucide-react"
+import { useEffect, useState } from "react";
+import Popup from "@/components/Popup";
 
 export default function Offers() {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+   const userInfo = localStorage.getItem("userInfo");
+   if (!userInfo) {
+     setShowPopup(true);
+   }
+ }, []);
   const featuredOffers = [
     {
       title: "Buy 1 Get 1 Free",
@@ -78,6 +88,7 @@ export default function Offers() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       {/* Enhanced Header with Real Background */}
       <div className="relative bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white overflow-hidden">
         <div className="absolute inset-0">

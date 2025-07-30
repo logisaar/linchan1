@@ -1,7 +1,17 @@
+'use client'
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
+import Popup from "@/components/Popup";
+import { useEffect, useState } from "react";
 
 export default function About() {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+   const userInfo = localStorage.getItem("userInfo");
+   if (!userInfo) {
+     setShowPopup(true);
+   }
+ }, []);
   const values = [
     {
       title: "Our Coffee",
@@ -37,6 +47,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-lime-700">
+       {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       {/* Hero Section */}
       {/* <div className="relative h-80 bg-gradient-to-br backdrop-blur-lg from-lime-800 to-lime overflow-hidden">
         <Image

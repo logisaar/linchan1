@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star, MapPin, Clock, Users, Coffee, Heart, Award } from "lucide-react"
 import { useEffect, useState } from "react";
+import Popup from "@/components/Popup";
 
 const offers = [
   "🔥 50% OFF on your first order!",
@@ -16,6 +17,13 @@ const offers = [
 
 
 export default function Home() {
+  const [showPopup, setShowPopup] = useState(false);
+  useEffect(() => {
+   const userInfo = localStorage.getItem("userInfo");
+   if (!userInfo) {
+     setShowPopup(true);
+   }
+ }, []);
 
    const [index, setIndex] = useState(0);
 
@@ -29,6 +37,7 @@ export default function Home() {
   return (
     <>
     <div className="w-full bg-lime-800 text-white overflow-hidden py-2">
+    {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       <div className="whitespace-nowrap transition-transform duration-700 ease-in-out"
            style={{ transform: `translateX(-${index * 100}%)`, display: "flex" }}>
         {offers.map((offer, i) => (
