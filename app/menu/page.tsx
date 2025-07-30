@@ -8,85 +8,92 @@ export default function Menu() {
   const menuCategories = {
     beverages: [
       {
-        name: "Cappuccino",
-        price: "₹280",
-        description: "Rich espresso with steamed milk",
-        image: "cappuccino with foam art",
-        popular: true,
-      },
-      {
-        name: "Latte",
-        price: "₹320",
-        description: "Smooth espresso with steamed milk",
-        image: "latte coffee with milk",
-        popular: false,
-      },
-      {
-        name: "Americano",
-        price: "₹240",
-        description: "Bold espresso with hot water",
-        image: "americano black coffee",
-        popular: false,
-      },
-      {
-        name: "Frappuccino",
-        price: "₹380",
-        description: "Blended coffee with ice and cream",
-        image: "frappuccino with whipped cream",
-        popular: true,
-      },
-      {
-        name: "Cold Brew",
-        price: "₹300",
-        description: "Smooth cold coffee concentrate",
-        image: "cold brew coffee with ice",
-        popular: false,
-      },
-      {
-        name: "Macchiato",
-        price: "₹340",
-        description: "Espresso with a dollop of foam",
-        image: "macchiato coffee with caramel",
-        popular: false,
-      },
-    ],
-    food: [
-      {
-        name: "Croissant",
-        price: "₹180",
-        description: "Buttery, flaky pastry",
-        image: "fresh croissant pastry",
-        popular: true,
-      },
-      {
-        name: "Sandwich",
-        price: "₹250",
-        description: "Grilled chicken sandwich",
-        image: "grilled sandwich with chicken",
-        popular: false,
-      },
-      { name: "Muffin", price: "₹160", description: "Blueberry muffin", image: "blueberry muffin", popular: true },
-      {
-        name: "Bagel",
-        price: "₹200",
-        description: "Everything bagel with cream cheese",
-        image: "bagel with cream cheese",
-        popular: false,
-      },
-      {
-        name: "Cake Pop",
-        price: "₹120",
-        description: "Sweet cake on a stick",
-        image: "colorful cake pops",
-        popular: false,
-      },
-      {
-        name: "Cookies",
-        price: "₹140",
-        description: "Chocolate chip cookies",
-        image: "chocolate chip cookies",
-        popular: true,
-      },
+      name: "Cappuccino",
+      price: "₹280",
+      description: "Rich espresso with steamed milk",
+      image: "/images/menu/photo1.jpg",
+      popular: true,
+    },
+    {
+      name: "Latte",
+      price: "₹320",
+      description: "Smooth espresso with steamed milk",
+      image: "/images/menu/photo2.jpg",
+      popular: false,
+    },
+    {
+      name: "Americano",
+      price: "₹240",
+      description: "Bold espresso with hot water",
+      image: "/images/menu/photo3.jpg",
+      popular: false,
+    },
+    {
+      name: "Frappuccino",
+      price: "₹380",
+      description: "Blended coffee with ice and cream",
+      image: "/images/menu/photo3.jpg",
+      popular: true,
+    },
+    {
+      name: "Cold Brew",
+      price: "₹300",
+      description: "Smooth cold coffee concentrate",
+      image: "/images/menu/photo2.jpg",
+      popular: false,
+    },
+    {
+      name: "Macchiato",
+      price: "₹340",
+      description: "Espresso with a dollop of foam",
+      image: "/images/menu/photo1.jpg",
+      popular: false,
+    },
+  ],
+  food: [
+    {
+      name: "Croissant",
+      price: "₹180",
+      description: "Buttery, flaky pastry",
+      image: "/images/menu/photo1.jpg",
+      popular: true,
+    },
+    {
+      name: "Sandwich",
+      price: "₹250",
+      description: "Grilled chicken sandwich",
+      image: "/images/menu/photo3.jpg",
+      popular: false,
+    },
+    {
+      name: "Muffin",
+      price: "₹160",
+      description: "Blueberry muffin",
+      image: "/images/menu/photo2.jpg",
+      popular: true,
+    },
+    {
+      name: "Bagel",
+      price: "₹200",
+      description: "Everything bagel with cream cheese",
+      image: "/images/menu/photo4.jpg",
+      popular: false,
+    },
+    {
+      name: "Cake Pop",
+      price: "₹120",
+      description: "Sweet cake on a stick",
+      image: "/images/menu/photo3.jpg",
+      popular: false,
+    },
+    {
+      name: "Cookies",
+      price: "₹140",
+      description: "Chocolate chip cookies",
+      image: "/images/menu/photo1.jpg",
+      popular: true,
+    },
+
     ],
   }
 
@@ -117,7 +124,7 @@ export default function Menu() {
                   <div className="flex">
                     <div className="relative w-24 h-24 flex-shrink-0">
                       <Image
-                        src={`/placeholder.svg?height=100&width=100&query=starbucks ${item.image}`}
+                        src={`${item.image}`}
                         alt={item.name}
                         fill
                         className="object-cover"
@@ -133,7 +140,7 @@ export default function Menu() {
                       </div>
                       <p className="text-gray-600 text-sm mb-3">{item.description}</p>
                       <Button size="sm" className="bg-lime-700 hover:bg-lime-800 w-full">
-                        Add to Cart
+                        Order Now
                       </Button>
                     </CardContent>
                   </div>
@@ -149,7 +156,7 @@ export default function Menu() {
                   <div className="flex">
                     <div className="relative w-24 h-24 flex-shrink-0">
                       <Image
-                        src={`/placeholder.svg?height=100&width=100&query=starbucks ${item.image}`}
+                        src={`${item.image}`}
                         alt={item.name}
                         fill
                         className="object-cover"
@@ -164,8 +171,8 @@ export default function Menu() {
                         <span className="text-green-600 font-bold">{item.price}</span>
                       </div>
                       <p className="text-gray-600 text-sm mb-3">{item.description}</p>
-                      <Button size="sm" className="bg-green-600 hover:bg-green-700 w-full">
-                        Add to Cart
+                      <Button size="sm" className="bg-lime-700 hover:bg-green-700 w-full">
+                        Order Now
                       </Button>
                     </CardContent>
                   </div>

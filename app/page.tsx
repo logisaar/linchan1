@@ -1,17 +1,51 @@
+"use client"
+import Link from "next/link";
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star, MapPin, Clock, Users, Coffee, Heart, Award } from "lucide-react"
+import { useEffect, useState } from "react";
+
+const offers = [
+  "🔥 50% OFF on your first order!",
+  "📦 Free delivery on orders above ₹499!",
+  "💚 Get 2+1 on all green tea packs!",
+  "🎁 Flat ₹100 cashback via UPI!",
+];
+
 
 export default function Home() {
+
+   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % offers.length);
+    }, 3000); // 3 seconds per offer
+    return () => clearInterval(interval);
+  }, []);
+
   return (
+    <>
+    <div className="w-full bg-lime-800 text-white overflow-hidden py-2">
+      <div className="whitespace-nowrap transition-transform duration-700 ease-in-out"
+           style={{ transform: `translateX(-${index * 100}%)`, display: "flex" }}>
+        {offers.map((offer, i) => (
+          <div key={i} className="min-w-full text-center text-sm sm:text-base font-medium tracking-wide">
+            {offer}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    
     <div className="min-h-screen">
       {/* Hero Section with Real Image */}
-      <div className="relative h-screen bg-gradient-to-br from-lime-900 via-lime-700 to-lime-700 overflow-hidden">
+      <div className="relative h-screen bg-gradient-to-br from-lime-300 via-stone-300 to-neutral-200 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D"
+            src="/images/home/photo1.jpg"
             alt="Starbucks Cafe Interior"
             fill
             className="object-cover opacity-60"
@@ -38,32 +72,28 @@ export default function Home() {
 
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
           <div className="text-center animate-fadeInUp">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text drop-shadow-2xl">Welcome to Starbucks</h1>
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text drop-shadow-2xl">Its Linchan's taste</h1>
             <p className="text-2xl md:text-3xl mb-8 opacity-95 max-w-3xl font-light">
-              Where every cup tells a story, and every moment matters
+              "Where every cup tells a story, and every moment matters"
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button className="bg-white text-lime-800 hover:bg-gray-100 font-bold px-10 py-5 text-xl hover-lift shadow-2xl">
-                <Coffee className="w-5 h-5 mr-2" />
-                Order Now
-              </Button>
+             
+             <Link href="/menu">
               <Button
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-lime-800 px-10 py-5 text-xl hover-lift bg-transparent shadow-2xl"
+                className="border-2 bg backdrop-blur-lg border-lime-600 text-white hover:bg-lime-400 backdrop:blur-lg hover:text-lime-800 px-10 py-5 text-xl hover-lift bg-transparent shadow-2x "
               >
-                <MapPin className="w-5 h-5 mr-2" />
-                Find Store
+                <Coffee className="w-5 h-5 mr-2" />
+               Order now
               </Button>
+             </Link>
+
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-8 h-12 border-2 border-white rounded-full flex justify-center">
-            <div className="w-2 h-4 bg-white rounded-full mt-2"></div>
-          </div>
-        </div>
+        
       </div>
 
       {/* App Download Banner */}
@@ -77,13 +107,15 @@ export default function Home() {
           />
         </div>
         <div className="relative z-10">
-          <p className="text-lime-800 font-bold text-2xl mb-3">📱 Download the Starbucks App</p>
-          <p className="text-lime-700 text-lg">Earn stars, get rewards, and pay with ease!</p>
+          <p className="text-lime-800 font-bold text-2xl mb-3">"A warm cup. A quiet corner. Feels like home."
+
+</p>
+          
         </div>
       </div>
 
       {/* Enhanced Stats Section */}
-      <div className="bg-white py-16">
+      {/* <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Impact in Numbers</h2>
@@ -123,7 +155,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Food & Beverage Showcase - Cafe Arni Style */}
       <div className="p-4 bg-gradient-to-br from-amber-50 to-orange-50">
@@ -140,7 +172,7 @@ export default function Home() {
               <Card className="overflow-hidden hover-lift group h-full">
                 <div className="relative h-96">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PHOTO-2025-07-24-00-51-56.jpg-08jx1xYiE46xqouePMOqSgxeEEdFIH.jpeg"
+                    src="/images/menu/photo2.jpg"
                     alt="Signature Coffee & Food Spread"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -157,10 +189,10 @@ export default function Home() {
 
             {/* Side Items */}
             <div className="space-y-6">
-              <Card className="overflow-hidden hover-lift group">
+              {/* <Card className="overflow-hidden hover-lift group">
                 <div className="relative h-44">
                   <Image
-                    src="https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D"
+                    src="/images/menu/photo3.jpg"
                     alt="Premium Coffee Experience"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-300"
@@ -171,7 +203,7 @@ export default function Home() {
                     <p className="text-sm opacity-90">From ₹280</p>
                   </div>
                 </div>
-              </Card>
+              </Card> */}
 
               <Card className="overflow-hidden hover-lift group">
                 <div className="relative h-44">
@@ -197,25 +229,25 @@ export default function Home() {
               {
                 name: "Artisan Pastries",
                 image:
-                  "https://images.unsplash.com/photo-1556742400-b5b7c5121f99?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fGNhZmV8ZW58MHx8MHx8fDA%3D",
+                  "/images/menu/photo4.jpg",
                 price: "From ₹180",
               },
               {
                 name: "Specialty Drinks",
                 image:
-                  "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNhZmV8ZW58MHx8MHx8fDA%3D",
+                  "/images/menu/photo1.jpg",
                 price: "From ₹320",
               },
               {
                 name: "Fresh Sandwiches",
                 image:
-                  "https://plus.unsplash.com/premium_photo-1668472274328-cd239ae3586f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGNhZmV8ZW58MHx8MHx8fDA%3D",
+                  "/images/menu/photo2.jpg",
                 price: "From ₹250",
               },
               {
                 name: "Premium Blends",
                 image:
-                  "https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
+                  "/images/menu/photo3.jpg",
                 price: "From ₹380",
               },
             ].map((item, index) => (
@@ -252,7 +284,7 @@ export default function Home() {
               subtitle: "On all Frappuccinos",
               discount: "50% OFF",
               image:
-                "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
+                "/images/menu/photo4.jpg",
               color: "from-red-500 to-pink-500",
             },
             {
@@ -260,7 +292,7 @@ export default function Home() {
               subtitle: "Show your student ID",
               discount: "20% OFF",
               image:
-                "https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
+                "/images/menu/photo3.jpg",
               color: "from-blue-500 to-indigo-500",
             },
             {
@@ -268,7 +300,7 @@ export default function Home() {
               subtitle: "Free pastry with beverage",
               discount: "FREE",
               image:
-                "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhZmV8ZW58MHx8MHx8fDA%3D",
+                "/images/menu/photo1.jpg",
               color: "from-lime-700 to-lime-500",
             },
           ].map((offer, index) => (
@@ -298,7 +330,7 @@ export default function Home() {
       </div>
 
       {/* Customer Reviews with Real Cafe Images */}
-      <div className="p-4 bg-gradient-to-br from-lime-50 to-blue-50">
+      {/* <div className="p-4 bg-gradient-to-br from-lime-50 to-blue-50">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
           <p className="text-xl text-gray-600">Real reviews from real coffee lovers</p>
@@ -357,20 +389,20 @@ export default function Home() {
             </Card>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Store Experience Section with Real Images */}
-      <div className="relative py-20 bg-gradient-to-r from-lime-800 to-lime-700 overflow-hidden">
+      <div className="relative py-20  bg-gradient-to-r from-lime-200 via-gray-300  overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D"
             alt="Store Experience"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-70"
           />
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <h2 className="text-5xl font-bold mb-6">The Starbucks Experience</h2>
+          <h2 className="text-5xl font-bold mb-6">The Linchan's Experience</h2>
           <p className="text-2xl mb-12 max-w-3xl mx-auto opacity-90">
             More than just coffee - it's a place where communities come together
           </p>
@@ -416,17 +448,21 @@ export default function Home() {
             <CardContent className="p-12 flex flex-col justify-center bg-gradient-to-br from-green-50 to-white">
               <h2 className="text-3xl font-bold text-gray-800 mb-6">Find Your Perfect Spot</h2>
               <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                With over 300 stores across India, there's always a Starbucks nearby. Find your perfect spot to work,
+                With over 5 stores across India, there's always a Starbucks nearby. Find your perfect spot to work,
                 relax, or catch up with friends in a welcoming atmosphere.
               </p>
+              <Link href="/menu">
               <Button className="bg-lime-700 hover:bg-green-700 py-4 text-lg font-semibold shadow-lg hover-lift">
-                <MapPin className="w-5 h-5 mr-2" />
-                Find Stores Near Me
+                
+                Get your first Order
               </Button>
+              </Link>
+
             </CardContent>
           </div>
         </Card>
       </div>
     </div>
+    </>
   )
 }

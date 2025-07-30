@@ -6,41 +6,39 @@ export default function About() {
     {
       title: "Our Coffee",
       description: "We're passionate about ethically sourcing the finest coffee beans from around the world.",
-      image: "coffee beans in hands with plantation background",
+      image: "/images/indoor/photo1.jpg",
       icon: "☕",
     },
     {
       title: "Our People",
       description: "We treat each other with respect and dignity, and we hold each other to that standard.",
-      image: "diverse starbucks team members working together",
+      image: "/images/outdoor/photo1.jpg",
       icon: "👥",
     },
     {
       title: "Our Stores",
       description: "When our customers feel this sense of belonging, our stores become a haven.",
-      image: "welcoming starbucks store interior with customers",
+      image: "/images/outdoor/photo2.jpg",
       icon: "🏪",
     },
     {
       title: "Our Community",
       description: "We are committed to being a responsible company and good neighbor.",
-      image: "starbucks community outreach and volunteering",
+      image: "/images/outdoor/photo3.jpg",
       icon: "🤝",
     },
   ]
 
   const timeline = [
-    { year: "1971", event: "Starbucks opens first store in Seattle's Pike Place Market" },
-    { year: "1987", event: "Howard Schultz purchases Starbucks" },
-    { year: "1996", event: "First international store opens in Tokyo, Japan" },
-    { year: "2012", event: "Starbucks opens first store in India" },
-    { year: "2024", event: "Over 300 stores across India" },
+    { year: "1971", event: "Linchan's opens first store in Seattle's Pike Place Market" },
+    { year: "2012", event: "Linchan's opens first store in India" },
+    { year: "2024", event: "Over 5 stores across Bhubaneswar" },
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-lime-700">
       {/* Hero Section */}
-      <div className="relative h-80 bg-gradient-to-br from-green-800 to-green-600 overflow-hidden">
+      {/* <div className="relative h-80 bg-gradient-to-br backdrop-blur-lg from-lime-800 to-lime overflow-hidden">
         <Image
           src="/placeholder.svg?height=400&width=800"
           alt="Coffee Plantation"
@@ -54,12 +52,12 @@ export default function About() {
             for over 50 years.
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Mission Statement */}
-      <div className="p-6 bg-white">
+      <div className="p-6 bg-white/30 backdrop-blur-md rounded-xl shadow-lg">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Mission</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Linchan's Says</h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             To inspire and nurture the human spirit – one person, one cup and one neighborhood at a time.
           </p>
@@ -67,25 +65,25 @@ export default function About() {
       </div>
 
       {/* Values Section */}
-      <div className="p-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">What We Stand For</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="p-4 ">
+        <h2 className="text-2xl font-bold  text-gray-800 mb-6 text-center">What We Stand For</h2>
+        <div className="grid grid-cols-1  md:grid-cols-2 gap-6  ">
           {values.map((value, index) => (
-            <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <Card key={index} className=" overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <div className="relative h-48">
                 <Image
-                  src={`/placeholder.svg?height=200&width=400&query=${value.image}`}
+                  src={`${value.image}`}
                   alt={value.title}
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute bottom-4 left-4 text-white">
+                <div className="absolute inset-0  bg-black/40" />
+                <div className="absolute bottom-4 left-4  text-white">
                   <div className="text-3xl mb-2">{value.icon}</div>
                   <h3 className="text-xl font-bold">{value.title}</h3>
                 </div>
               </div>
-              <CardContent className="p-4">
+              <CardContent className=" p-4">
                 <p className="text-gray-600">{value.description}</p>
               </CardContent>
             </Card>
@@ -94,7 +92,7 @@ export default function About() {
       </div>
 
       {/* Timeline */}
-      <div className="p-4 bg-white">
+      <div className="p-4 backdrop:blur-md bg-lime-200/50">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Our Journey</h2>
         <div className="max-w-3xl mx-auto">
           {timeline.map((item, index) => (

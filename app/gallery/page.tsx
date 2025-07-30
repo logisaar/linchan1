@@ -5,13 +5,13 @@ import { Heart, Share2, Download, Camera } from "lucide-react"
 
 export default function Gallery() {
   const realImages = [
-    "https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
-    "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
-    "https://images.unsplash.com/photo-1511081692775-05d0f180a065?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D",
-    "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGNhZmV8ZW58MHx8MHx8fDA%3D",
-    "https://images.unsplash.com/photo-1556742400-b5b7c5121f99?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fGNhZmV8ZW58MHx8MHx8fDA%3D",
-    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNhZmV8ZW58MHx8MHx8fDA%3D",
-    "https://plus.unsplash.com/premium_photo-1668472274328-cd239ae3586f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGNhZmV8ZW58MHx8MHx8fDA%3D",
+    "/images/outdoor/photo1.jpg",
+    "/images/outdoor/photo2.jpg",
+    "/images/outdoor/photo3.jpg",
+    "/images/outdoor/photo4.jpg",
+    "/images/outdoor/photo5.jpg",
+    "/images/outdoor/photo6.jpg",
+    "/images/outdoor/photo7.jpg",
   ]
 
   const galleryCategories = {
@@ -65,20 +65,20 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Enhanced Header with Real Background */}
-      <div className="relative bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white overflow-hidden">
+      <div className="relative bg-gradient-to-br from-lime-300 via-slate-300 to-lime- text-white overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src={realImages[0] || "/placeholder.svg"}
             alt="Gallery Background"
             fill
-            className="object-cover opacity-30"
+            className="object-cover opacity-90"
           />
         </div>
         <div className="relative z-10 p-12 text-center">
-          <h1 className="text-5xl font-bold mb-4">Visual Stories</h1>
-          <p className="text-2xl opacity-90 mb-8">Moments that matter, crafted with care</p>
+          <h1 className="text-5xl font-bold mb-4">_</h1>
+          <p className="text-2xl opacity-90 mb-8"></p>
           <div className="flex justify-center space-x-12 text-lg">
-            <div className="text-center">
+            {/* <div className="text-center">
               <div className="text-3xl font-bold">500+</div>
               <div className="opacity-80">Photos</div>
             </div>
@@ -89,7 +89,7 @@ export default function Gallery() {
             <div className="text-center">
               <div className="text-3xl font-bold">4</div>
               <div className="opacity-80">Categories</div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -215,15 +215,15 @@ export default function Gallery() {
         <div className="absolute inset-0">
           <Image src={realImages[3] || "/placeholder.svg"} alt="Instagram Background" fill className="object-cover" />
         </div>
-        <div className="relative z-10 bg-gradient-to-r from-pink-500/95 to-purple-600/95 p-12 text-white text-center">
-          <h2 className="text-4xl font-bold mb-6">📸 Share Your Starbucks Moment</h2>
-          <p className="text-xl mb-8 opacity-90">Tag us @StarbucksIndia and use #MyStarbucksMoment to be featured</p>
-          <div className="flex justify-center space-x-6 text-5xl mb-8">
+        <div className="relative z-10 bg-gradient-to-r backdrop-blur-sm via-lime-600 to-lime-70 p-12 text-white text-center">
+          <h2 className="text-4xl font-bold mb-6">Capture the Moment</h2>
+          <p className="text-xl mb-8 opacity-90">Tag us @Linchan's and use #linchan'sMoment </p>
+          {/* <div className="flex justify-center space-x-6 text-5xl mb-8">
             <span>📸</span>
             <span>☕</span>
             <span>💚</span>
             <span>✨</span>
-          </div>
+          </div> */}
           <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
             {[realImages[4], realImages[5], realImages[6]].map((img, i) => (
               <div key={i} className="aspect-square relative rounded-xl overflow-hidden">
