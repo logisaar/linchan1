@@ -17,31 +17,41 @@ const Popup = ({ onClose }: PopupProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-     const url = "https://script.google.com/macros/s/AKfycbz8GCh05RNJpx-jTPIBw0LSvYR8b_UmCrhygMw9nxEMU-u2Njc-LhdElX4HKPRgZ9PQ/exec";
+    setError(null);
 
-     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-         body: new URLSearchParams({
-        Name: name,
-        Email: email,
-        Phone: number,
-      })
-    });
-      const data = await response.text();
-      console.log("Success:", data); // Log the response from the Google Script
-      // toast({
-      //   title: "Message sent successfully!",
-      //   description: "We'll get back to you within 24 hours.",
-      //   variant: "default"
-      // });
+    try {
+      const formData = new FormData();
+      formData.append('Name', name);
+      formData.append('Email', email);
+      formData.append('Phone', number);
+
+      const response = await fetch('/api', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log("Success:", result.message);
+        // Reset form
+        setName("");
+        setEmail("");
+        setNumber("");
+        onClose();
+        // Show success message
+        alert("Form submitted successfully!");
+      } else {
+        setError(result.message || 'Failed to submit form');
+        alert("Error: " + (result.message || 'Failed to submit form'));
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
-      // toast({ title: "Error", description: "Failed to send message.", variant: "destructive" });
+      setError('Network error occurred');
+      alert("Network error occurred");
+    } finally {
+      setIsSubmitting(false);
     }
-    
-    
   };
 
   return (
