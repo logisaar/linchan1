@@ -18,12 +18,17 @@ const offers = [
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
+  
   useEffect(() => {
-   const userInfo = localStorage.getItem("userInfo");
-   if (!userInfo) {
-     setShowPopup(true);
-   }
- }, []);
+    // Check if form has been submitted or popup has been seen
+    const formSubmitted = localStorage.getItem("formSubmitted");
+    const popupSeen = localStorage.getItem("popupSeen");
+    
+    // Only show popup if neither form has been submitted nor popup has been seen
+    if (!formSubmitted && !popupSeen) {
+      setShowPopup(true);
+    }
+  }, []);
 
    const [index, setIndex] = useState(0);
 
@@ -36,7 +41,7 @@ export default function Home() {
 
   return (
     <>
-    <div className="w-full bg-lime-800 text-white overflow-hidden py-2">
+    <div className="w-full bg-lime-800 text-black overflow-hidden py-2">
     {showPopup && <Popup onClose={() => setShowPopup(false)} />}
       <div className="whitespace-nowrap transition-transform duration-700 ease-in-out"
            style={{ transform: `translateX(-${index * 100}%)`, display: "flex" }}>

@@ -2,6 +2,7 @@
 'use client'
 
 import { useState } from "react";
+import { X } from "lucide-react";
 
 interface PopupProps {
   onClose: () => void;
@@ -34,6 +35,10 @@ const Popup = ({ onClose }: PopupProps) => {
 
       if (result.success) {
         console.log("Success:", result.message);
+        // Store form submission status in localStorage
+        localStorage.setItem("formSubmitted", "true");
+        localStorage.setItem("userInfo", JSON.stringify({ name, email, number }));
+        
         // Reset form
         setName("");
         setEmail("");
@@ -54,9 +59,23 @@ const Popup = ({ onClose }: PopupProps) => {
     }
   };
 
+  const handleClose = () => {
+    // Store that user has seen the popup (even if they didn't submit)
+    localStorage.setItem("popupSeen", "true");
+    onClose();
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
+        {/* Close button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-2 right-2 p-2 hover:bg-gray-100 rounded-full transition-colors"
+        >
+          <X className="w-5 h-5 text-gray-500" />
+        </button>
+        
         <form onSubmit={handleSubmit}>
           <h2 className="text-xl font-bold mb-4">Enter your details</h2>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -98,36 +117,4 @@ const Popup = ({ onClose }: PopupProps) => {
 };
 
 export default Popup;
-
-// function sendWhatsAppMessages() {
-//   const ss = SpreadsheetApp.getActiveSpreadsheet();
-//   const mainSheet   = ss.getSheetByName("Main");    // Sheet with Name & Phone
-//   const couponSheet = ss.getSheetByName("Coupons"); // Sheet with Coupon Codes
-
-//   // Read all rows from both sheets
-//   const mainData   = mainSheet.getDataRange().getValues();
-//   const couponData = couponSheet.getDataRange().getValues();
-
-//   // Loop rows, skipping header (row 1)
-//   for (let i = 1; i < mainData.length; i++) {
-//     const name       = mainData[i][0];    // Column A of Main
-//     const phone      = mainData[i][1];    // Column B of Main
-//     const couponCode = couponData[i][0];  // Column A of Coupons
-
-//     // Build personalized message
-//     const text = `🎁 Hello ${name}, you’ve received an exclusive OffiShop coupon. Use code ${couponCode} to get ₹100 off. Limited time offer!`;
-//     const encodedMessage = encodeURIComponent(text);
-
-//     // WhatsApp Web URL
-//     const url = `https://wa.me/${phone}?text=${encodedMessage}`;
-
-//     // Log the link (copy these from View → Logs)
-//     Logger.log(url);
-//   }
-
-//   // Notify when done
-//   SpreadsheetApp.getUi().alert(
-//     '✅ Links generated! Go to View → Logs in the Apps Script editor to copy them.'
-//   );
-// }
 
