@@ -467,7 +467,7 @@ export default function Home() {
               </p>
               <Link href="/menu">
               <Button className="bg-lime-700 hover:bg-green-700 py-4 text-lg font-semibold shadow-lg hover-lift">
-                
+
                 Get your first Order
               </Button>
               </Link>
@@ -476,6 +476,17 @@ export default function Home() {
           </div>
         </Card>
       </div>
+
+      {/* Copyright Footer */}
+      <footer>
+  <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '20px' }}>
+    © 2025 All Rights Reserved | Made by 
+    <a href="https://logisaar.in" target="_blank" style={{ color: '#007bff', textDecoration: 'none' }}>
+       Logisaar
+    </a>
+  </p>
+</footer>
+
     </div>
     </>
   )

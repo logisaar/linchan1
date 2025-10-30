@@ -22,6 +22,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="min-h-screen bg-gray-50 pb-20">{children}</main>
         <BottomNavigation />
+        <footer>
+          <p style={{ textAlign: 'center', fontSize: '14px', color: '#777', marginTop: '20px' }}>
+            © 2025 All Rights Reserved | Made by
+            <a href="https://logisaar.in" target="_blank" style={{ color: '#007bff', textDecoration: 'none' }}>
+              Logisaar
+            </a>
+          </p>
+        </footer>
       </body>
     </html>
   )
